@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Processed Image</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9faff;
+            color: #2b4b80;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #4CAF50;
+            text-shadow: 1px 1px 3px rgba(0, 128, 0, 0.3);
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 8px 0 20px 0;
+            font-weight: 600;
+        }
+        img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.25);
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+        img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.4);
+        }
+        a.download-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 28px;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+        }
+        a.download-btn:hover {
+            background-color: #388e3c;
+            box-shadow: 0 8px 22px rgba(56, 142, 60, 0.6);
+        }
+        .nav-links {
+            margin-top: 40px;
+            font-size: 1.1rem;
+        }
+        .nav-links a {
+            color: #7b2cbf;
+            font-weight: 600;
+            margin: 0 16px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #5a189a;
+        }
+    </style>
+</head>
+<body>
+    <h2>✅ <strong>Processed Image</strong></h2>
+    <p><strong>Filename:</strong> {{ filename }}</p>
+
+    <!-- Show the processed image -->
+    <img src="{{ image_url }}" alt="{{ filename }}" />
+
+    <!-- Download button -->
+    <a href="{{ image_url }}" download="{{ filename }}" class="download-btn">
+        ⬇ Download Image
+    </a>
+
+    <div class="nav-links">
+        <a href="/">⬅ Back to Home</a> |
+        <a href="/processed">🔍 View All Processed Images</a>
+    </div>
+</body>
+</html>

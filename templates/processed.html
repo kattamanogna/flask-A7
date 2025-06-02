@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Processed Images</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        h2 {
+            color: #2b4b80;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        .images-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 50px auto;
+        }
+        .image-card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            width: 200px;
+            transition: transform 0.3s ease;
+        }
+        .image-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .image-card img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 12px;
+            user-select: none;
+        }
+        .image-name, .download-link {
+            display: block;
+            font-weight: 600;
+            color: #2b4b80;
+            margin-bottom: 6px;
+            text-decoration: none;
+            word-break: break-word;
+            font-size: 0.95rem;
+        }
+        .download-link {
+            color: #4caf50;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        .download-link:hover {
+            color: #388e3c;
+            text-decoration: underline;
+        }
+        .no-images {
+            font-size: 1.2rem;
+            color: #777;
+            margin-top: 30px;
+        }
+        a.back-home {
+            display: inline-block;
+            margin-top: 30px;
+            font-weight: 600;
+            color: #7b2cbf;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        a.back-home:hover {
+            color: #5a189a;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>🖼️ Processed Images from S3</h2>
+
+    {% if images %}
+        <div class="images-container">
+            {% for image in images %}
+                <div class="image-card">
+                    <img src="{{ image.url }}" alt="{{ image.name }}" loading="lazy" />
+                    <a href="{{ image.url }}" target="_blank" class="image-name">{{ image.name }}</a>
+                    <a href="{{ image.url }}" download class="download-link">⬇ Download</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-images">No processed images found.</p>
+    {% endif %}
+
+    <a href="/" class="back-home">⬅ Back to Home</a>
+</body>
+</html>

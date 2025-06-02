@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Currently Processed Image</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #eef4ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px 20px;
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            font-size: 2.4rem;
+            color: #2b4b80;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 6px 0;
+            color: #555;
+        }
+        strong {
+            color: #1e355e;
+        }
+        img {
+            margin: 20px 0 30px 0;
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(43, 75, 128, 0.25);
+            border: 2px solid #a0a8c2;
+            transition: transform 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 30px rgba(43, 75, 128, 0.35);
+        }
+        form {
+            margin-bottom: 25px;
+        }
+        button {
+            background-color: #2b4b80;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(43, 75, 128, 0.3);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        button:hover {
+            background-color: #1e355e;
+            box-shadow: 0 8px 20px rgba(30, 53, 94, 0.5);
+        }
+        .links {
+            font-size: 1.1rem;
+        }
+        .links a {
+            color: #7b2cbf;
+            font-weight: 600;
+            text-decoration: none;
+            margin: 0 16px;
+            transition: color 0.3s ease;
+        }
+        .links a:hover {
+            color: #5a189a;
+        }
+    </style>
+</head>
+<body>
+    <h2>🖼️ Your Uploaded Image</h2>
+    <p><strong>Filename:</strong> {{ filename }}</p>
+    <p><strong>Applied Filter:</strong> {{ filter }}</p>
+
+    {% if image_url %}
+        <img src="{{ image_url }}" alt="Uploaded Image">
+    {% endif %}
+
+    <form action="{{ url_for('show_processed', filename=filename) }}" method="get">
+        <button type="submit">⚙️ Process This Image</button>
+    </form>
+
+    <div class="links">
+        <a href="/">⬅ Back to Home</a> |
+        <a href="/processed">🔍 View All Processed Images</a>
+    </div>
+</body>
+</html>
